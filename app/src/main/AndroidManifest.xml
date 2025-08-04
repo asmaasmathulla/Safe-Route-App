@@ -4,8 +4,6 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +15,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SafeRoute"
         tools:targetApi="31">
+        <activity
+            android:name=".AudioPlayerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VideoPlayerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".VideosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AudiosActivity"
+            android:exported="false" />
         <activity
             android:name=".LiveLocationActivity"
             android:exported="false" />

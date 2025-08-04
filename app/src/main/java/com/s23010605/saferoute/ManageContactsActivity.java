@@ -1,10 +1,13 @@
 package com.s23010605.saferoute;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -16,8 +19,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class ManageContactsActivity extends AppCompatActivity {
     DatabaseHelper myDB;
-    EditText editName, editMobileNo, editEmail, editId;
-    Button saveBtn, seeAllContactsBtn, editBtn, deleteBtn;
+    EditText editName, editMobileNo, editEmail;
+    Button saveBtn;
+    boolean isEditMode = false;
+    String contactId;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,22 +36,41 @@ public class ManageContactsActivity extends AppCompatActivity {
             return insets;
         });
 
-        myDB = new DatabaseHelper(this);
+        ImageButton backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
+        myDB = new DatabaseHelper(this);
 
         editName = findViewById(R.id.nameInput);
         editMobileNo = findViewById(R.id.mobileNoInput);
         editEmail = findViewById(R.id.emailInput);
-        editId = findViewById(R.id.idInput);
         saveBtn = findViewById(R.id.saveBtn);
-        seeAllContactsBtn = findViewById(R.id.seeAllContactsBtn);
-        editBtn = findViewById(R.id.editBtn);
-        deleteBtn = findViewById(R.id.deleteBtn);
 
-        addData();
-        viewAll();
-        updateData();
-        deleteData();
+        Intent intent = getIntent();
+        isEditMode = intent.getBooleanExtra("isEdit", false);
+
+        if (isEditMode) {
+            contactId = intent.getStringExtra("ID");
+            String name = intent.getStringExtra("NAME");
+            String number = intent.getStringExtra("NUMBER");
+            String email = intent.getStringExtra("EMAIL");
+
+            editName.setText(name);
+            editMobileNo.setText(number);
+            editEmail.setText(email);
+
+            saveBtn.setText("Update");
+            updateData();
+        }
+        else {
+            addData();
+        }
+
     }
 
     public void addData(){
@@ -58,66 +83,25 @@ public class ManageContactsActivity extends AppCompatActivity {
                 }else{
                     Toast.makeText(ManageContactsActivity.this, "Data Not Inserted Successfully", Toast.LENGTH_LONG).show();
                 }
+                finish();
             }
         });
-    }
-
-    public void viewAll(){
-        seeAllContactsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Cursor results = myDB.getAllData();
-                if(results.getCount()==0){
-                    showMessage("Error Message :", "No data available in the database");
-                    return;
-                }
-                StringBuffer buffer = new StringBuffer();
-                while(results.moveToNext()){
-                    buffer.append("ID :" + results.getString(0)+ "\n");
-                    buffer.append("NAME :" + results.getString(1)+ "\n");
-                    buffer.append("MOBILE_NO :" + results.getString(2)+ "\n");
-                    buffer.append("EMAIL :" + results.getString(3)+ "\n\n");
-
-                    showMessage("List of Data", buffer.toString());
-                }
-
-            }
-        });
-    }
-
-    public void showMessage(String title, String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(ManageContactsActivity.this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(message);
-        builder.show();
     }
 
     public void updateData(){
-        editBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boolean isUpdate = myDB.updateData(editId.getText().toString(), editName.getText().toString(), editMobileNo.getText().toString(), editEmail.getText().toString());
-                if(isUpdate == true)
-                    Toast.makeText(ManageContactsActivity.this, "Data Updated", Toast.LENGTH_LONG).show();
-                else
-                    Toast.makeText(ManageContactsActivity.this, "Data not Updated", Toast.LENGTH_LONG).show();
+        saveBtn.setOnClickListener(view -> {
 
+            boolean isUpdated = myDB.updateData(contactId,
+                    editName.getText().toString(),
+                    editMobileNo.getText().toString(),
+                    editEmail.getText().toString());
+
+            if (isUpdated) {
+                Toast.makeText(ManageContactsActivity.this, "Contact Updated", Toast.LENGTH_SHORT).show();
+                finish();
+            } else {
+                Toast.makeText(ManageContactsActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-    public void deleteData(){
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Integer deletedatarows = myDB.deleteData(editId.getText().toString());
-                if(deletedatarows>0)
-                    Toast.makeText(ManageContactsActivity.this, "Data Deleted", Toast.LENGTH_LONG).show();
-                else
-                    Toast.makeText(ManageContactsActivity.this, "Data not Deleted", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
-
 }

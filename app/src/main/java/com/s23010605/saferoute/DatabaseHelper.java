@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "Contacts.db";
     public static final String TABLE_NAME = "contacts_table";
@@ -45,26 +47,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-     public Cursor getAllData(){
+    public Cursor getAllData(){
          SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
          Cursor results = sqLiteDatabase.rawQuery("select * from " + TABLE_NAME, null);
          return results;
      }
 
-     public boolean updateData(String id, String name, String mobile_no, String email){
-         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-         ContentValues contentValues = new ContentValues();
-         contentValues.put(COL_1, id);
-         contentValues.put(COL_2, name);
-         contentValues.put(COL_3, mobile_no);
-         contentValues.put(COL_4, email);
-         sqLiteDatabase.update(TABLE_NAME, contentValues, "id = ?", new String[] {id});
-         return true;
-     }
+    public boolean updateData(String id, String name, String mobile_no, String email) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_2, name);
+        contentValues.put(COL_3, mobile_no);
+        contentValues.put(COL_4, email);
+
+        int result = sqLiteDatabase.update(TABLE_NAME, contentValues, "ID = ?", new String[]{id});
+        return result > 0;
+    }
 
     public Integer deleteData(String id){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         return sqLiteDatabase.delete(TABLE_NAME, "ID = ?", new String[] {id});
+    }
+
+    public ArrayList<ContactModel> getAllContactModels() {
+        ArrayList<ContactModel> contactList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String id = cursor.getString(cursor.getColumnIndexOrThrow("ID"));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow("NAME"));
+                String mobileNo = cursor.getString(cursor.getColumnIndexOrThrow("MOBILE_NO"));
+                String email = cursor.getString(cursor.getColumnIndexOrThrow("EMAIL"));
+
+                ContactModel contact = new ContactModel(id, name, mobileNo, email);
+                contactList.add(contact);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return contactList;
     }
 
 }

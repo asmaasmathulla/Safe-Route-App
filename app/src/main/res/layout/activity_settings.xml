@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.17000002">
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/recordingVideo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -49,7 +49,7 @@
         app:layout_constraintVertical_bias="0.262">
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/recordingVideo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -106,7 +106,7 @@
             app:layout_constraintVertical_bias="0.484" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/recordingVideo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -149,7 +149,7 @@
             app:layout_constraintVertical_bias="0.484" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/recordingVideo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -191,7 +191,7 @@
             app:layout_constraintVertical_bias="0.484" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/recordingVideo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -219,7 +219,7 @@
         app:layout_constraintVertical_bias="0.71000004">
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/recordingVideo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -260,7 +260,7 @@
             app:layout_constraintVertical_bias="0.484" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/recordingVideo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -288,10 +288,9 @@
         app:layout_constraintVertical_bias="0.0">
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginStart="15dp"
             android:layout_marginEnd="331dp"
             android:layout_marginBottom="1dp"
             android:backgroundTint="@color/background"

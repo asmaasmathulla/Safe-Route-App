@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import android.view.View;
+import android.widget.ImageButton;
+
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
@@ -24,15 +26,23 @@ public class SettingsActivity extends AppCompatActivity {
             return insets;
         });
 
-//        ConstraintLayout contactsSettings = findViewById(R.id.contactsSettings);
-//
-//        contactsSettings.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(SettingsActivity.this, ContactsActivity.class);
-//                startActivity(intent);
-//            }
-//        });
+        ImageButton backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        ConstraintLayout contactsSettings = findViewById(R.id.contactsSettings);
+
+        contactsSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SettingsActivity.this, ContactsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ConstraintLayout about = findViewById(R.id.recordingAudio);
 

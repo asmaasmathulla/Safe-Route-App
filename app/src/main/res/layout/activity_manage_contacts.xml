@@ -21,10 +21,9 @@
         app:layout_constraintVertical_bias="0.0">
 
         <ImageButton
-            android:id="@+id/imageButton2"
+            android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginStart="15dp"
             android:layout_marginEnd="331dp"
             android:layout_marginBottom="1dp"
             android:backgroundTint="@color/background"
@@ -73,6 +72,7 @@
         android:background="@color/grey"
         android:fontFamily="@font/amaranth"
         android:hint="  Name"
+        android:includeFontPadding="false"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -101,89 +101,23 @@
         app:layout_constraintVertical_bias="0.495" />
 
     <Button
-        android:id="@+id/seeAllContactsBtn"
-        android:layout_width="180dp"
-        android:layout_height="75dp"
-        android:backgroundTint="@color/pink"
-        android:fontFamily="@font/amaranth"
-        android:text="See All Contacts"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:cornerRadius="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.93"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.671" />
-
-    <Button
         android:id="@+id/saveBtn"
-        android:layout_width="180dp"
-        android:layout_height="75dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:backgroundTint="@color/pink"
         android:fontFamily="@font/amaranth"
         android:text="Save"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.671" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/idInput"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:background="@color/grey"
-        android:fontFamily="@font/amaranth"
-        android:hint="  Enter ID to Edit / Delete"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.822" />
-
-    <Button
-        android:id="@+id/deleteBtn"
-        android:layout_width="180dp"
-        android:layout_height="60dp"
-        android:backgroundTint="@color/pink"
-        android:text="Delete"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:cornerRadius="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.93"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.908" />
-
-    <Button
-        android:id="@+id/editBtn"
-        android:layout_width="180dp"
-        android:layout_height="60dp"
-        android:backgroundTint="@color/pink"
-        android:text="Edit"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        app:cornerRadius="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.908" />
+        app:layout_constraintVertical_bias="0.72" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/emailInput"
